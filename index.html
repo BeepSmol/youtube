@@ -1,1 +1,329 @@
-<meta http-equiv="refresh" content="0; url=https://www.youtube.com/@beepsmol?sub_confirmation=1">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeepSmol - Channels</title> 
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #1a1a2e;
+            --panel-bg: #2d3436;
+            --text-main: #f1f5f9;
+            --purple-accent: #a29bfe;
+            --yellow-accent: #facc15;
+            --indie-border: 1px solid #000;
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            border: ridge rgb(175, 148, 29) 20px;
+            background-image: url('placeholder.png');
+            background-repeat: repeat;
+            background-size: 100px 100px;
+            min-height: 100vh;
+        }
+
+        .nav-wrapper {
+            background: var(--bg-dark);
+            border-bottom: var(--indie-border);
+            padding: 15px 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .nav-title {
+            font-family: sans-serif;
+            font-size: 2.8rem;
+            color: var(--yellow-accent);
+            text-shadow: 3px 3px 0px #000;
+            margin-bottom: 12px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            background: var(--purple-accent);
+            color: #1a1a2e;
+            border: 2px solid #000;
+            padding: 6px 16px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 3px 3px 0px #000;
+            transition: all 0.1s;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover {
+            background: var(--yellow-accent);
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px #000;
+        }
+
+        .nav-links a:active {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0px #000;
+        }
+
+        .site-container {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .content-box {
+            background: var(--panel-bg);
+            border: ridge rgb(0, 0, 0) 6px;
+            margin-bottom: 30px;
+            position: relative;
+            box-shadow: 0 0 10px 12.5px rgba(0,0,0,0.3);
+            background-image: linear-gradient(to bottom, #494636, #2d3436);
+        }
+
+        .box-title {
+            background: var(--purple-accent);
+            color: #1a1a2e;
+            padding: 2px 15px;
+            font-family: sans-serif;
+            font-size: 1.5rem;
+            display: inline-block;
+            margin-top: -18px;
+            margin-left: 15px;
+            border: ridge rgb(0, 0, 0) 3px;
+            font-weight: bold;
+        }
+
+        .box-body { 
+            padding: 25px; 
+        }
+
+        .channels-layout {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            padding: 30px 10px;
+        }
+
+        .channel-card {
+            border: 4px solid #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            cursor: pointer;
+        }
+
+        /* Main Channel Styling (Center, Largest) */
+        .main-channel {
+            background: var(--purple-accent);
+            width: 320px;
+            height: 380px;
+            padding: 30px;
+            box-shadow: 6px 6px 0px #000;
+            z-index: 2;
+        }
+
+        .main-channel h2 {
+            color: #1a1a2e;
+            font-size: 3rem;
+            font-weight: 900;
+            margin: 10px 0;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0px rgba(255,255,255,0.4);
+        }
+
+        .main-channel p {
+            color: #1a1a2e;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .channel-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 4px solid #000;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+            margin-bottom: 15px;
+            background-color: var(--panel-bg);
+            object-fit: cover;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .main-channel .channel-avatar {
+            width: 140px;
+            height: 140px;
+            border: 5px solid #000;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.5);
+        }
+
+        .main-channel:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 10px 10px 0px #000;
+            background: var(--yellow-accent);
+        }
+        
+        .main-channel:hover .channel-avatar {
+            transform: scale(1.05);
+        }
+
+        /* Side Channels Styling (Left & Right, Smaller) */
+        .side-channel {
+            background: rgba(0, 0, 0, 0.6);
+            border-color: var(--yellow-accent);
+            width: 240px;
+            height: 310px;
+            padding: 20px;
+            box-shadow: 4px 4px 0px #000;
+            z-index: 1;
+        }
+
+        .side-channel h2 {
+            color: var(--yellow-accent);
+            font-size: 2rem;
+            font-weight: 900;
+            margin: 10px 0;
+            text-transform: uppercase;
+        }
+
+        .side-channel p {
+            color: #ccc;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .side-channel:hover {
+            transform: translateY(-5px);
+            box-shadow: 6px 6px 0px #000;
+            background: var(--purple-accent);
+            border-color: #000;
+        }
+        
+        .side-channel:hover h2, 
+        .side-channel:hover p {
+            color: #1a1a2e;
+        }
+
+        .side-channel:hover .channel-avatar {
+            transform: scale(1.1);
+            box-shadow: 6px 6px 0px #000;
+        }
+
+        @media (max-width: 850px) {
+            .channels-layout {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            /* Reorder so the main channel appears first on mobile */
+            .main-channel { order: 1; width: 100%; max-width: 350px; height: auto; padding: 40px 20px; }
+            .side-channel:nth-child(1) { order: 2; width: 100%; max-width: 320px; height: auto; }
+            .side-channel:nth-child(3) { order: 3; width: 100%; max-width: 320px; height: auto; }
+        }
+
+        footer {
+            margin: 50px 0;
+            text-align: center;
+            font-family: sans-serif;
+            color: var(--yellow-accent);
+            background: #000;
+            padding: 10px 20px;
+            border: 2px solid var(--purple-accent);
+            display: block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-wrapper">
+        <a href="index.html" class="nav-title">BEEPSMOL.COM</a>
+        <div class="nav-links">
+            <a href="https://beepsmol.com">Home</a>
+            <a href="https://beepsmol.com/projects">Projects</a>
+            <a href="https://beepsmol.com/music">Music</a>
+            <a href="https://beepsmol.com/blog">Blog</a>
+        </div>
+    </div>
+
+    <div class="site-container">
+        
+        <div class="content-box">
+            <span class="box-title">MY CHANNELS</span>
+            <div class="box-body">
+                <p class="text-center text-gray-300 font-bold mb-6 text-lg">Pick a channel to explore! Don't forget to subscribe :D</p>
+                
+                <div class="channels-layout">
+                    
+                    <!-- LEFT SIDE CHANNEL: beep.mp3 -->
+                    <a href="https://www.youtube.com/@beepmus?sub_confirmation=1" target="_blank" class="channel-card side-channel">
+                        <img src="beepmus.png" onerror="this.src='https://placehold.co/150x150/1a1a2e/a29bfe?text=beep.mp3'" alt="beep.mp3 avatar" class="channel-avatar">
+                        <h2>beep.mp3</h2>
+                        <p>where I put my music</p>
+                        <div class="mt-4 px-6 py-2 bg-black text-white text-sm font-bold uppercase border-2 border-black shadow-[2px_2px_0px_#fff] transition-colors">
+                            Visit!
+                        </div>
+                    </a>
+
+                    <!-- CENTER MAIN CHANNEL: beep -->
+                    <a href="https://www.youtube.com/@beepsmol?sub_confirmation=1" target="_blank" class="channel-card main-channel">
+                        <img src="beepsmol.png" onerror="this.src='https://placehold.co/200x200/1a1a2e/facc15?text=beep'" alt="beep avatar" class="channel-avatar">
+                        <h2>beep</h2>
+                        <p>my main channel</p>
+                        <div class="mt-6 px-8 py-3 bg-black text-yellow-400 text-lg font-black uppercase border-2 border-black shadow-[4px_4px_0px_#fff] transition-colors">
+                            Visit!
+                        </div>
+                    </a>
+
+                    <!-- RIGHT SIDE CHANNEL: beep.mp4 -->
+                    <a href="https://www.youtube.com/@beepmore?sub_confirmation=1" target="_blank" class="channel-card side-channel">
+                        <img src="beepmore.png" onerror="this.src='https://placehold.co/150x150/1a1a2e/a29bfe?text=beep.mp4'" alt="beep.mp4 avatar" class="channel-avatar">
+                        <h2>beep.mp4</h2>
+                        <p>where I put other stuff</p>
+                        <div class="mt-4 px-6 py-2 bg-black text-white text-sm font-bold uppercase border-2 border-black shadow-[2px_2px_0px_#fff] transition-colors">
+                            Visit!
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>BEEPSMOL&trade; &copy; 2026. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
